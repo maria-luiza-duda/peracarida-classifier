@@ -1,0 +1,115 @@
+<h2>Register</h2>
+<form id="registerForm" action="{% url 'frontend:registerrecord' %}" method="POST">
+  {% csrf_token %}
+  <label for="researcher_name">Researcher Name:</label>
+  <input type="text" id="researcher_name" name="researcher_name" required><br>
+
+  <label for="institution">Institution:</label>
+  <input type="text" id="institution" name="institution" required><br>
+
+  <label for="collector_name">Collector Name:</label>
+  <input type="text" id="collector_name" name="collector_name" required><br>
+
+  <label for="collection_location">Collection Location:</label>
+  <input type="text" id="collection_location" name="collection_location" required><br>
+
+  <label for="latitude">Latitude:</label>
+  <input type="text" id="latitude" name="latitude" required><br>
+
+  <label for="longitude">Longitude:</label>
+  <input type="text" id="longitude" name="longitude" required><br>
+
+  <label for="depth">Depth:</label>
+  <input type="text" id="depth" name="depth" required><br>
+
+  <label for="sediment_type">Sediment Type:</label>
+  <input type="text" id="sediment_type" name="sediment_type" required><br>
+
+  <label for="specimen_size">Specimen Size:</label>
+  <input type="text" id="specimen_size" name="specimen_size" required><br>
+
+  <label for="photo_material">Photo Material:</label>
+  <input type="text" id="photo_material" name="photo_material" required><br>
+
+  <button type="submit">Register</button>
+</form>
+
+<a class="back-home" href="{% url 'frontend:home' %}">Back home</a>
+
+<a class="go-upload" href="{% url 'frontend:upload' %}">Go to Upload</a>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Registered Data:</h3>
+    <p id="registeredData"></p>
+  </div>
+</div>
+
+<script>
+  // Obtém o elemento do modal
+  var modal = document.getElementById("myModal");
+
+  // Obtém o elemento <span> que fecha o modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // Quando o usuário clicar em "Register", exibe o modal
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
+    showModal();
+  });
+
+  // Quando o usuário clicar no botão "Close", fecha o modal
+  span.onclick = function() {
+    closeModal();
+  };
+
+  // Quando o usuário clicar fora do modal, fecha-o
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      closeModal();
+    }
+  };
+
+  // Função para exibir o modal e preencher os dados registrados
+  function showModal() {
+    // Obtém os valores dos campos do formulário
+    var researcherName = document.getElementById("researcher_name").value;
+    var institution = document.getElementById("institution").value;
+    var collectorName = document.getElementById("collector_name").value;
+    var collectionLocation = document.getElementById("collection_location").value;
+    var latitude = document.getElementById("latitude").value;
+    var longitude = document.getElementById("longitude").value;
+    var depth = document.getElementById("depth").value;
+    var sedimentType = document.getElementById("sediment_type").value;
+    var specimenSize = document.getElementById("specimen_size").value;
+    var photoMaterial = document.getElementById("photo_material").value;
+
+    // Cria a string com os dados registrados
+    var registeredData =
+      "Researcher Name: " + researcherName + "<br>" +
+      "Institution: " + institution + "<br>" +
+      "Collector Name: " + collectorName + "<br>" +
+      "Collection Location: " + collectionLocation + "<br>" +
+      "Latitude: " + latitude + "<br>" +
+      "Longitude: " + longitude + "<br>" +
+      "Depth: " + depth + "<br>" +
+      "Sediment Type: " + sedimentType + "<br>" +
+      "Specimen Size: " + specimenSize + "<br>" +
+      "Photo Material: " + photoMaterial;
+
+    // Preenche o elemento <p> com os dados registrados
+    document.getElementById("registeredData").innerHTML = registeredData;
+
+    // Exibe o modal
+    console.log("Dados registrados:", registeredData);
+    modal.style.display = "block";
+
+  }
+
+  // Função para fechar o modal
+  function closeModal() {
+    modal.style.display = "none";
+  }
+</script>
+

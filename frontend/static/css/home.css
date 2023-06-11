@@ -1,0 +1,78 @@
+/* Custom Carousel CSS */
+
+.carousel {
+  position: relative;
+  margin: 40px 0;
+}
+
+.carousel-inner {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.carousel-item {
+  flex: 0 0 100%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: auto;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  font-size: 24px;
+  line-height: 48px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.carousel-control-prev {
+  left: 10px;
+}
+
+.carousel-control-next {
+  right: 10px;
+}
+
+.carousel-titles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.carousel-titles h1,
+.carousel-titles h2 {
+  margin: 0;
+}
+
+.try-it-button {
+  margin-top: 20px;
+}
+
+@media (min-width: 576px) {
+  .carousel-inner {
+    flex-wrap: nowrap;
+  }
+
+  .carousel-item {
+    flex: 0 0 calc(100% / 3);
+  }
+}

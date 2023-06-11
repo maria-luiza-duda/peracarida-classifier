@@ -1,0 +1,5 @@
+{% for record in records %}
+  <p>{{ record.researcher_name }} - {{ record.institution }}</p>
+{% empty %}
+  <p>Nenhum registro encontrado.</p>
+{% endfor %}
