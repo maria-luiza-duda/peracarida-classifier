@@ -2,5 +2,4 @@ django
 pika
 tensorflow
 numpy
-minio
-
+minio==7.1.0

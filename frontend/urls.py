@@ -11,5 +11,6 @@ urlpatterns = [
     path('upload/', views.UploadView.as_view(), name='upload'),
     path('results/', views.ResultsView.as_view(), name='results'),
     path('analyze/<str:temp_path>/', views.AnalyzeView.as_view(), name='analyze')
-]
-+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

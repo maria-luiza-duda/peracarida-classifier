@@ -9,7 +9,7 @@ from tensorflow.keras.optimizers import Adam
 from minio.error import ResponseError
 
 # Configurações do MinIO
-minio_endpoint = 'http://127.0.0.1:9000'
+minio_endpoint = '192.168.0.102:9000'
 minio_access_key = 'admin'
 minio_secret_key = 'password'
 minio_bucket = 'peracarida'

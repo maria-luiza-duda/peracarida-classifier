@@ -1,0 +1,23 @@
+version: '3'
+services:
+  web:
+    build: .
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+    links:
+      - db
+    environment:
+      - MINIO_ENDPOINT=192.168.0.102:9000
+      - MINIO_ACCESS_KEY=admin
+      - MINIO_SECRET_KEY=password
+
+  db:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - ./data/db:/var/lib/mysql

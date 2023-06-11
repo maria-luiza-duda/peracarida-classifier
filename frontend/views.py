@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from .forms import RecordForm
 from minio import Minio
 import os
 import pika
+from .forms import RecordForm
+from backend.models import Record
 
 # Configurações do MinIO
-minio_endpoint = 'http://192.168.0.102:9000'
+minio_endpoint = '192.168.0.102:9000'
 minio_access_key = 'admin'
 minio_secret_key = 'password'
 minio_temp_bucket = 'temp'
@@ -27,8 +28,14 @@ class RegisterRecordView(View):
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():
-            form.save()  # Salva o registro no banco de dados
-            return redirect('frontend:registerrecord')  # Redireciona para a página inicial após o registro ser salvo
+            try:
+                record = form.save()  # Save the record to the database
+                print(record)  # Print the saved record for debugging purposes
+                return redirect('frontend:registerrecord')
+            except Exception as e:
+                print(e)  # Print any exceptions that occur during saving
+        else:
+            print(form.errors)  # Print validation errors
 
         return render(request, self.template_name, {'form': form})
 
